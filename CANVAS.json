@@ -1,0 +1,287 @@
+{
+  "provider": "Higgsfield",
+  "room_id": "92a49202-0f11-4fc0-8531-86fab2f535e8",
+  "workspace_id": "7b0be90e-e8d8-46cf-be81-150a81d015c1",
+  "canvas_url": "https://higgsfield.ai/canvas/92a49202-0f11-4fc0-8531-86fab2f535e8",
+  "source_plan": "D:\\Face_Id\\PLAN.md",
+  "source_revision": 7,
+  "synced_revision": null,
+  "status": "stakeholder view saved; plan update pending",
+  "updated": "2026-11-09",
+  "verification": "Read back 26 nodes and 8 connections; node rectangles do not overlap. Rendered board not visually inspected.",
+  "nodes": [
+    {
+      "key": "title",
+      "id": "85109d7a-3be3-4b20-ac96-ec612682a18f",
+      "last_synced_text": "A simpler way to take attendance"
+    },
+    {
+      "key": "goal",
+      "id": "e656f172-87ce-40f3-b674-5e7045ae7b4d",
+      "last_synced_text": "Use student ID cards in lecture entrance recordings to create an attendance list.\nA clear plan, a small first test, and evidence of what works."
+    },
+    {
+      "key": "lead",
+      "id": "65a37766-38d5-44f9-9d7f-c2f9fbdbd5b0",
+      "last_synced_text": "PLANNING LEAD\nScope · priorities · review · decisions\nOwns the plan and report\nEscalates unresolved decisions to Ody"
+    },
+    {
+      "key": "technical",
+      "id": "f4c05228-17a6-412b-8d74-5db8a4b7a46e",
+      "last_synced_text": "TECHNICAL PLANNER\nMethods · data structure · experiments\nReturns options and measurable checks\nChallenges assumptions with evidence"
+    },
+    {
+      "key": "investigator",
+      "id": "b25121c0-b233-481e-aa9e-a893a35727c3",
+      "last_synced_text": "DATA INVESTIGATOR\nFootage · cards · readability · coverage\nReturns actual sample observations\nAssignment waits for sample access"
+    },
+    {
+      "key": "roadmap",
+      "id": "b305449f-42bf-4a00-822a-7e4511915695",
+      "last_synced_text": "Roadmap · stages expand when evidence justifies the next step"
+    },
+    {
+      "key": "S1",
+      "id": "51aabf0a-ebf3-4dd9-a0c1-a1de3ab321fe",
+      "last_synced_text": "S1 · CLARIFY THE FIRST MILESTONE\nBRIEF DRAFTED · Lead · P02 done / P06 open\nCard based attendance is the first milestone.\nIdentifier, output and targets remain open.\nDELIVERABLE: brief + unanswered questions\nGATE: required agreement still outstanding"
+    },
+    {
+      "key": "S2",
+      "id": "515a6a41-c2be-4221-a04b-1c52411d5fbe",
+      "last_synced_text": "S2 · INSPECT INPUT EVIDENCE\nBLOCKED ON SAMPLES · Investigator · P05\nInventory footage, card designs and labels.\nCheck identifiers, readability and variation.\nDELIVERABLE: referenced sample findings\nGATE: observed limitations documented"
+    },
+    {
+      "key": "S3",
+      "id": "dd0fd2e6-4461-4299-96b4-2c6c7175cc1f",
+      "last_synced_text": "S3 · DESIGN THE FIRST EXPERIMENT\nPROPOSAL DRAFTED · Technical planner · P03 done\nReading route depends on the actual identifier.\nManual readability, then manual card crops.\nDELIVERABLE: records + bounded procedure\nGATE: confirm assumptions with real samples"
+    },
+    {
+      "key": "S4",
+      "id": "4e84f632-6a1c-485c-ba31-407486d52b0b",
+      "last_synced_text": "S4 · TEAM CHALLENGE AND LEAD REVIEW\nDESK REVIEW DONE · FINAL ACCEPTANCE BLOCKED\nNeed sample evidence and required decisions.\nResolve debate or bring a decision to Ody.\nDELIVERABLE: accepted experiment plan\nGATE: material objections and unknowns addressed"
+    },
+    {
+      "key": "S5",
+      "id": "528433ae-e1e7-4524-9f39-a9bd0488372e",
+      "last_synced_text": "S5 · ESTABLISH CARD READING BASELINE\nPLANNED · Technical experiment\nUse checked samples and manual card crops.\nTest the appropriate identifier reader.\nDELIVERABLE: exact readings + failures\nGATE: measured evidence and agreed target"
+    },
+    {
+      "key": "S6",
+      "id": "cb99fd34-599b-4e21-8ef6-4df653271a9a",
+      "last_synced_text": "S6 · HANDLE MULTIPLE CARDS IN VIDEO\nPLANNED · Implementation and testing\nFind separate cards, prepare useful crops,\ncombine views and consolidate attendance.\nDELIVERABLE: checked short clip results\nGATE: duplicates and unclear cases handled"
+    },
+    {
+      "key": "S7",
+      "id": "cfad4f91-2a96-4529-a272-67fec4dd3283",
+      "last_synced_text": "S7 · EVALUATE SEPARATE FOOTAGE\nPLANNED · Evaluation\nFreeze the configuration before testing.\nCount correct, wrong, missed, unresolved\nIDs, duplicates and processing time.\nGATE: compare with checked reference"
+    },
+    {
+      "key": "S8",
+      "id": "6fb11e11-569c-486f-9780-9e88d5dd4b4d",
+      "last_synced_text": "S8 · PACKAGE EVIDENCE AND FINDINGS\nPLANNED · Lead and contributors\nMethod, inputs, configuration, results,\nlimitations, instructions and demonstration.\nDELIVERABLE: traceable project evidence\nGATE: assess against agreed requirements"
+    },
+    {
+      "key": "legend",
+      "id": "f12e7780-2fdc-4a26-bd71-ee99540e72a5",
+      "last_synced_text": "Stage colours: blue = drafted · yellow = missing input or decision · neutral = proposed future work\nGreen child = accepted planning output. The activity report continues throughout; planned stages are not completed results."
+    },
+    {
+      "key": "questions",
+      "id": "1a0238fb-19d5-445c-a07b-edbdb066fc93",
+      "last_synced_text": "Open decisions · evidence needed before commitments"
+    },
+    {
+      "key": "Q1_Q3",
+      "id": "94ab7314-d2f3-403c-b9b7-3c3a0d30cf3a",
+      "last_synced_text": "Q1 / Q3 · IDENTIFIER AND CARD DESIGN\nPrinted number, barcode or another feature?\nHow many card layouts exist?\nNeeded for: the reading route and crop design\nOwner: Lead asks; investigator observes"
+    },
+    {
+      "key": "Q2",
+      "id": "5ce330da-4619-49d3-afca-efb9ac1607cd",
+      "last_synced_text": "Q2 · ORIGINAL FOOTAGE READABILITY\nCan a person read the identifier?\nCheck clear and difficult original samples.\nNeeded for: a realistic baseline experiment\nOwner: Data investigator"
+    },
+    {
+      "key": "Q4",
+      "id": "feb5a755-7eb9-4227-8ca9-8d0477243134",
+      "last_synced_text": "Q4 · REFERENCE INFORMATION\nIs a usable class list available?\nWhat manually checked labels can be made?\nNeeded for: validation and evaluation\nOwner: Lead confirms; investigator inventories"
+    },
+    {
+      "key": "Q5_Q6",
+      "id": "4f0eedde-fe2e-418e-b30c-3979d27a25ff",
+      "last_synced_text": "Q5 / Q6 · EXPECTED DELIVERABLE\nOutput, lecture IDs, deadline and error targets?\nHow will unclear cases be reviewed?\nNeeded for: professor agreement and acceptance\nOwner: Ody / professor, coordinated by lead"
+    },
+    {
+      "key": "living",
+      "id": "4deee065-4436-4e1b-b4d1-5e1a571638f6",
+      "last_synced_text": "Living branches · add only when the work produces something useful"
+    },
+    {
+      "key": "growth",
+      "id": "474cfe82-7d37-48bc-a277-589f16d1c126",
+      "last_synced_text": "HOW THIS CANVAS EXPANDS\nAdd child nodes under stable stage IDs:\nfinding · decision · experiment · result.\nLink evidence, owner, status and next action.\nKeep superseded ideas visible as deferred.\nLead integrates changes after team discussion."
+    },
+    {
+      "key": "comms",
+      "id": "082e5cbc-cf6f-4ff8-bc61-35772955ebf2",
+      "last_synced_text": "TEAM COMMUNICATION\nShare partial findings and blockers directly.\nAcknowledge changes affecting your task.\nChallenge any member, including the lead.\nResolve with evidence and alternatives.\nBring unresolved material decisions to Ody."
+    },
+    {
+      "key": "records",
+      "id": "e4f0a8b1-69b2-4903-a2d9-b91d48f14013",
+      "last_synced_text": "INFORMATION STRUCTURE\nLecture → Frame → Card observation\nReading → Attendance + evidence links\nReference labels stay separate from predictions.\nExperiment records inputs, settings and checks.\nPLAN = current state · REPORT = history"
+    },
+    {
+      "key": "later",
+      "id": "d23d217b-6536-4769-b505-017c80fa1721",
+      "last_synced_text": "DEFERRED · POSSIBLE LATER BRANCHES\nFace comparison and borrowed card checks\nLive processing and iPad deployment\nDashboard and operational integration\nReopen after a useful measured baseline\nand Ody's decision on the next milestone."
+    },
+    {
+      "key": "P03_result",
+      "id": "92ff917d-4183-43b2-bb53-5a05ccfa9710",
+      "last_synced_text": "P03 · PLANNING PROPOSAL ACCEPTED\nIdentifier decides the reading route.\nManual readability before a cropped card test.\nSeparate observation and student counts.\nNo sample or model results claimed."
+    },
+    {
+      "key": "OV1",
+      "id": "b26cc02d-9aab-44d0-93c5-0334dad2705e",
+      "last_synced_text": "1 · AGREE THE GOAL\n\nPlan drafted\nConfirm the expected outcome"
+    },
+    {
+      "key": "OV2",
+      "id": "12c73ba9-b599-4e76-96f6-279370aba8ea",
+      "last_synced_text": "2 · REVIEW RECORDINGS\n\nOur next step\nCheck that cards can be read"
+    },
+    {
+      "key": "OV3",
+      "id": "f5fc9567-c7a9-4028-ab28-10553bd93da5",
+      "last_synced_text": "3 · BUILD A FIRST VERSION\n\nPlanned\nCreate an attendance list"
+    },
+    {
+      "key": "OV4",
+      "id": "7056c71f-be64-4b34-a244-3d6f4fb037ec",
+      "last_synced_text": "4 · CHECK THE RESULTS\n\nPlanned\nCompare with a manual check"
+    },
+    {
+      "key": "OV5",
+      "id": "0e3f4cc7-e9c0-4729-bb48-65770dc97404",
+      "last_synced_text": "5 · SHARE THE OUTCOME\n\nPlanned\nPresent results and next steps"
+    },
+    {
+      "key": "OV_status",
+      "id": "bd92d603-94d8-4706-8a54-c2cdfd3fdec4",
+      "last_synced_text": "PROJECT ROADMAP  ·  Current stage: planning"
+    },
+    {
+      "key": "OV_next",
+      "id": "6ff4269a-98b8-42e0-8863-154f8aa3c3c5",
+      "last_synced_text": "WHAT WE NEED NEXT\n\nA short original recording and agreement\non the attendance list we need to produce."
+    },
+    {
+      "key": "OV_success",
+      "id": "2ecd5dde-8464-4479-83fa-c5bca3dabc00",
+      "last_synced_text": "WHAT SUCCESS WILL LOOK LIKE\n\nA useful attendance list, checked against real examples,\nwith unclear cases clearly shown for review."
+    },
+    {
+      "key": "OV_note",
+      "id": "f6aca514-23cb-4cf4-a838-2c28b1b56370",
+      "last_synced_text": "First version: record that a student ID card was shown. Results will be added as the project develops.\nDetailed work tickets and team notes are maintained separately."
+    },
+    {
+      "key": "workarea_title",
+      "id": "559563c2-1740-4ab9-b332-82e5fdfcc59c",
+      "last_synced_text": "Team working detail"
+    }
+  ],
+  "connections": [
+    {
+      "id": "02871088-d8c8-40c5-a8e7-8ded416c2ffc",
+      "source": "515a6a41-c2be-4221-a04b-1c52411d5fbe",
+      "target": "dd0fd2e6-4461-4299-96b4-2c6c7175cc1f",
+      "label": "Actual input findings"
+    },
+    {
+      "id": "2f8bd70e-35ed-47ab-9046-365f8ccf761e",
+      "source": "dd0fd2e6-4461-4299-96b4-2c6c7175cc1f",
+      "target": "92ff917d-4183-43b2-bb53-5a05ccfa9710",
+      "label": "Planning output"
+    },
+    {
+      "id": "4114efc0-0255-4d12-b543-19544534edb4",
+      "source": "dd0fd2e6-4461-4299-96b4-2c6c7175cc1f",
+      "target": "4e84f632-6a1c-485c-ba31-407486d52b0b",
+      "label": "Proposal"
+    },
+    {
+      "id": "42fb02f9-e3b7-45a3-91ae-8ef963f42556",
+      "source": "51aabf0a-ebf3-4dd9-a0c1-a1de3ab321fe",
+      "target": "dd0fd2e6-4461-4299-96b4-2c6c7175cc1f",
+      "label": "Requirements"
+    },
+    {
+      "id": "53fad867-6846-4971-960f-c9074a2a1ae6",
+      "source": "7056c71f-be64-4b34-a244-3d6f4fb037ec",
+      "target": "0e3f4cc7-e9c0-4729-bb48-65770dc97404",
+      "label": null
+    },
+    {
+      "id": "5de1aaff-40d2-4c57-bb12-82d09544649d",
+      "source": "cb99fd34-599b-4e21-8ef6-4df653271a9a",
+      "target": "cfad4f91-2a96-4529-a272-67fec4dd3283",
+      "label": "Frozen configuration"
+    },
+    {
+      "id": "887a05ce-a3f0-40ea-8f7c-a2c6704b2ee6",
+      "source": "4e84f632-6a1c-485c-ba31-407486d52b0b",
+      "target": "528433ae-e1e7-4524-9f39-a9bd0488372e",
+      "label": "Accepted plan + readable samples"
+    },
+    {
+      "id": "897ecafa-8072-4b7d-a392-4512c71b91d7",
+      "source": "12c73ba9-b599-4e76-96f6-279370aba8ea",
+      "target": "f5fc9567-c7a9-4028-ab28-10553bd93da5",
+      "label": null
+    },
+    {
+      "id": "909cedd5-3e93-4548-9a33-5479482a1b3e",
+      "source": "528433ae-e1e7-4524-9f39-a9bd0488372e",
+      "target": "cb99fd34-599b-4e21-8ef6-4df653271a9a",
+      "label": "Measured reading baseline"
+    },
+    {
+      "id": "aabdf0d6-d4fa-4d24-93d1-1ef0bfd9b33b",
+      "source": "f5fc9567-c7a9-4028-ab28-10553bd93da5",
+      "target": "7056c71f-be64-4b34-a244-3d6f4fb037ec",
+      "label": null
+    },
+    {
+      "id": "cd5835e3-3bdb-4242-ae96-3af8c18a9ded",
+      "source": "cfad4f91-2a96-4529-a272-67fec4dd3283",
+      "target": "6fb11e11-569c-486f-9780-9e88d5dd4b4d",
+      "label": "Checked results"
+    },
+    {
+      "id": "da687a89-1ec2-40eb-a36d-73237d1421a3",
+      "source": "b26cc02d-9aab-44d0-93c5-0334dad2705e",
+      "target": "12c73ba9-b599-4e76-96f6-279370aba8ea",
+      "label": null
+    }
+  ],
+  "views": {
+    "stakeholder": {
+      "x": 80,
+      "y": 220,
+      "width": 1510,
+      "height": 1100,
+      "stage_keys": [
+        "OV1",
+        "OV2",
+        "OV3",
+        "OV4",
+        "OV5"
+      ]
+    },
+    "technical": {
+      "x": 3080,
+      "y": 120
+    }
+  }
+}

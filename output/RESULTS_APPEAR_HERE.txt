@@ -1,0 +1,3 @@
+The program creates a new run folder here after you add a supported input and run it.
+Open processing_summary.csv and the numbered images inside that run folder.
+No actual card photos or videos were available when this demo was prepared.

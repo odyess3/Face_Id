@@ -1,0 +1,8 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}\\.venv-card-demo\\Scripts\\python.exe",
+  "files.exclude": {
+    "**/__pycache__": true,
+    ".venv": true,
+    ".venv-card-demo": true
+  }
+}

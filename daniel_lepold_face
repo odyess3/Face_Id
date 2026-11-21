@@ -1,0 +1,118 @@
+import numpy as np
+import cv2
+import glob
+import osen
+
+
+
+def adjust_gamma(image, gamma=1.5):
+    """
+    Adjust the gamma of an input image to control its brightness.
+
+    Parameters:
+    - image: The input image to process (as a NumPy array).
+    - gamma: The gamma correction value (default is 1.5).
+             A value greater than 1 makes the image brighter,
+             while a value less than 1 makes it darker.
+
+    Returns:
+    - The gamma-corrected image.
+    """
+    # Calculate the inverse of the gamma value
+    invGamma = 1.0 / gamma
+
+    # Create a lookup table mapping pixel values [0, 255] to their adjusted values
+    # Each value in the table is adjusted using the formula:
+    # new_value = (old_value / 255.0) ** invGamma * 255
+    table = np.array(
+        [(i / 255.0) ** invGamma * 255 for i in np.arange(0, 256)]
+    ).astype("uint8")
+
+    # Apply the lookup table to the image to adjust its pixel values
+    # cv2.LUT is used to map the pixel intensities according to the lookup table
+    return cv2.LUT(image, table)
+
+
+
+
+def transform_homography(image, imgName):
+    """
+    Applies a homography transformation to an image, adjusting its perspective to a standard rectangular shape. This is useful for correcting distorted perspectives in images, such as cards, documents, or planar surfaces.
+
+    :param image: The input image in which the homography transformation will be applied.
+    :param imgName: The base name of the image, used for saving intermediate and final results.
+    :return: transformed image
+    """
+
+
+
+    # Convert the input image to grayscale
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+    # Detect edges using the Canny edge detector
+    edges = cv2.Canny(gray, 50, 150)
+
+    # Find contours in the edge-detected image
+    contours, _ = cv2.findContours(edges, cv2.RETR_EXTERNAL,
+                                   cv2.CHAIN_APPROX_SIMPLE)
+
+    # Select the largest contour based on area
+    contour = max(contours, key=cv2.contourArea)
+
+    # Approximate the contour to reduce the number of points
+    epsilon = 0.02 * cv2.arcLength(contour, True)
+    approx = cv2.approxPolyDP(contour, epsilon, True)
+
+    # Check if at least 4 corners (vertices) were found
+    if len(approx) >= 4:
+        # Extract corner points
+        points = np.array([point[0] for point in approx], dtype="float32")
+
+        # Calculate sums and differences of the points' coordinates
+        # to determine their positions
+        s = points.sum(axis=1)
+        diff = np.diff(points, axis=1)
+
+        # Identify the four corners of the contour
+        top_left = points[np.argmin(s)]
+        bottom_right = points[np.argmax(s)]
+        top_right = points[np.argmin(diff)]
+        bottom_left = points[np.argmax(diff)]
+
+        # Arrange the corners in the correct order
+        src_pts = np.array([top_left, top_right, bottom_right, bottom_left],
+                           dtype="float32")
+
+        # Draw the detected contour on the original image
+        cv2.polylines(image, [src_pts.astype(int)], isClosed=True,
+                      color=(0, 255, 0), thickness=3)
+
+        # Save the image with the contour overlaid
+        cv2.imwrite(f"{imgName}_original_with_contour.jpg", image)
+
+        # Define the destination points for the homography transformation
+        dst = np.array([
+            [100, 100],  # Top-left corner
+            [650, 100],  # Top-right corner
+            [650, 650],  # Bottom-right corner
+            [100, 650]   # Bottom-left corner
+        ], dtype="float32")
+
+        # Compute the homography matrix
+        homography_matrix, _ = cv2.findHomography(src_pts, dst)
+
+        # Warp the perspective of the original image using the homography matrix
+        warped_image = cv2.warpPerspective(image, homography_matrix, (800, 800))
+
+        # Save the transformed (warped) image
+        cv2.imwrite(f"{imgName}_transformed_card.jpg", warped_image)
+
+        return warped_image
+    else:
+        # Print a message if not enough corners were found
+        print("Failed to find enough corners.")
+        return image
+
+
+
+

@@ -1,0 +1,4 @@
+Copy JPG, JPEG, PNG, BMP or WEBP card photos into this folder.
+Start with one clear photo showing the whole card against a plain background.
+Run card_demo.py afterwards. Results go into D:\Face_Id\output.
+Files stay on this computer; there is no website upload step.
