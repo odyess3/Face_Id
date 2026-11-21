@@ -351,3 +351,9 @@ The assistant used the configured Git credential helper for the authenticated Gi
 The repository was confirmed private before the first upload. At this entry's preparation, the files were ready for the initial commit and push; the actual remote result is recorded in the following update after verification.
 
 The initial staged whitespace check flagged an existing extra blank line in `daniel_lepold_face` and trailing whitespace in the copied article script. The assistant preserved both source examples as intended and checked the remaining staged files separately. Git also printed routine Windows line ending conversion warnings; no source behaviour change was required.
+
+**Verified upload result**
+
+The assistant committed the 20 selected source, configuration and documentation files as `d14dd4717419c0e125e0bf801e9e1b44cc35d1ea` and successfully pushed `main` to `https://github.com/odyess3/Face_Id`. The remote `refs/heads/main` returned the same commit hash as the local `HEAD`, and the branch was configured to track `origin/main`. The working tree was clean immediately after that push. This verification note is saved in a subsequent documentation commit so the remote report also records the completed upload.
+
+The uploaded files include the main demo, tests, original local fragment, article practice snapshot, run configuration, input instructions and existing research, planning and activity notes. Real card media, generated result folders, both Python environments and the empty document placeholder remain local and ignored. The repository is private. The upload does not establish card detection accuracy, identity verification or attendance functionality.
