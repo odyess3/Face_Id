@@ -86,7 +86,7 @@ def transform_homography(image, imgName):
                       color=(0, 255, 0), thickness=3)
 
         # Save the image with the contour overlaid
-        cv2.imwrite(f"{imgName}_original_with_contour.jpg", image)
+        cv2.imwrite(f"output/{imgName}_original_with_contour.jpg", image)
 
         # Define the destination points for the homography transformation
         dst = np.array([
@@ -103,7 +103,7 @@ def transform_homography(image, imgName):
         warped_image = cv2.warpPerspective(image, homography_matrix, (800, 800))
 
         # Save the transformed (warped) image
-        cv2.imwrite(f"{imgName}_transformed_card.jpg", warped_image)
+        cv2.imwrite(f"output/{imgName}_transformed_card.jpg", warped_image)
 
         return warped_image
     else:
@@ -143,7 +143,7 @@ def detect_face(img, imgName):
     cropped_face = img[y:y + h, x:x + w]
 
     # Save the cropped face image
-    cv2.imwrite(f"{imgName}_onlyface_result.jpg", cropped_face)
+    cv2.imwrite(f"output/{imgName}_onlyface_result.jpg", cropped_face)
 
 
 
