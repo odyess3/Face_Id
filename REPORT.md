@@ -407,3 +407,97 @@ For each small reported or observed step, future updates should identify the act
 **Outcome**
 
 Detailed reporting is configured in the restored report and current project instructions. No application code was changed or run, no detection tests were performed, no Git deletion was retried, and no commit or GitHub push was made for this reporting update.
+
+### Entry 27: Learn OCR setup and add a VS Code reminder
+
+Recorded on 23 November 2026. The teaching and installation exchanges below are recorded retrospectively from the visible conversation. The final documentation checks and edits were performed in this session.
+
+**Ody's requests and reported work**
+
+- Ody asked for code to extract a student number, separate name fields and the face from a card. He supplied expected example details. Those private details are not repeated here.
+- He instructed the assistant to teach him, provide sources and avoid doing work without him. The assistant switched to guided steps and waited between them.
+- Ody supplied the OCR tutorial at https://thepythoncode.com/article/optical-character-recognition-pytesseract-python. Supplying the link does not establish that he read the whole article or completed its examples.
+- He asked how to import and install pytesseract, whether `pytesseract==0.3.13` belongs in `requirements.txt`, and how to resolve `TesseractNotFoundError`.
+- He authorised inspection of his system, later reported installing Tesseract, and asked the assistant to add it to PATH. He interrupted that action and then said nevermind.
+- His latest request was for a quick description of what to do in VS Code. The assistant interpreted this as a short setup reminder in the existing `help.md`.
+
+**Teaching and source exploration**
+
+The assistant explained that OCR converts image text into a Python string, that separating names and student numbers requires further rules, and that extracting the card face is a separate image operation. It explained imports, exact version requirements, installation from a requirements file and the distinction between the pytesseract package and the separate Tesseract program. It did not establish extraction accuracy or implement the requested field extraction.
+
+The assistant opened the supplied tutorial and primary documentation for pytesseract, Tesseract, the Windows installer, pip requirements and OpenCV face detection. Technical setup guidance was checked against the primary sources. References consulted in the visible exchange:
+
+- https://thepythoncode.com/article/optical-character-recognition-pytesseract-python
+- https://github.com/madmaze/pytesseract
+- https://pypi.org/project/pytesseract/0.3.13/
+- https://pip.pypa.io/en/stable/reference/requirements-file-format/
+- https://tesseract-ocr.github.io/tessdoc/
+- https://tesseract-ocr.github.io/tessdoc/Installation.html
+- https://github.com/UB-Mannheim/tesseract/wiki
+- https://docs.opencv.org/4.x/db/d28/tutorial_cascade_classifier.html
+
+These are assistant source visits, not evidence that Ody read every page. Code examples were explained; a successful card OCR run was not demonstrated.
+
+**Direct system observations**
+
+The initial inspection found Python 3.15.2 in the project environment with pytesseract 0.3.13, Pillow 13.0.0, NumPy 2.5.5 and OpenCV 4.14.0.94 installed. The initial search did not find Tesseract in PATH, common installation folders or Windows uninstall records; that bounded search did not prove absence from every possible folder.
+
+After Ody reported installation, the assistant found `C:\Program Files\Tesseract-OCR\tesseract.exe`, ran its version and language listing commands, and observed Tesseract 5.5.3.20260724 with `eng` and `osd` data. It did not run the card processing script.
+
+The PATH command was interrupted, so its full output and planned Python verification were unavailable. During the latest read only check, the assistant confirmed that the Tesseract folder is now present in the saved user PATH. This establishes that the PATH entry persisted despite the interruption. It does not prove that an already running VS Code session has refreshed its environment.
+
+**Current documentation work and outcome**
+
+The assistant read the current project instructions, report, help file, requirements and relevant OCR lines. Current source inspection showed the pytesseract import, explicit Tesseract executable location and `image_to_string` call. The location line was already present before this documentation edit; the assistant did not add it in this session.
+
+The assistant appended a short setup section to `help.md` covering the VS Code terminal, installing requirements, the separate Windows program, the existing location line, running the script with the project interpreter and reopening VS Code after a PATH change. It preserved the earlier OpenCV description and reference, and added primary source links. This report entry records the work.
+
+Only documentation was edited in this session. No application code, packages or PATH settings were changed during this documentation request. No application run, OCR accuracy check, commit or push was performed.
+
+The saved help section and report ending were read back. The whitespace check passed for both edited documentation files. A wider check also identified existing trailing whitespace in the modified application script; the assistant left that unrelated code unchanged.
+
+### Entry 28: Discuss targeting the student number and name
+
+On 23 November 2026, Ody asked whether the student number and full name he supplied could be targeted in images. The assistant read the latest report ending and checked the current OCR function, which calls `pytesseract.image_to_string(image)`. No card image was processed or application code changed.
+
+The assistant explained two possible meanings: extracting the number and name from their areas of each card, or searching OCR results for one particular student's known details. It proposed cropping the relevant card areas after straightening as a possible next extraction step, and referred to the previously consulted official pytesseract documentation. This was teaching and a proposal, not an implemented or verified extraction result. The assistant asked which meaning Ody intended before providing the next coding step. No new web source was opened, and no test, commit or push was performed.
+
+### Entry 29: Confirm extraction for every student's card
+
+On 23 November 2026, Ody clarified that he wants to extract the fields from every student's card. The assistant read the report ending and current OCR function and call site. The function prints the result of `image_to_string`; it is currently called with a copy of the original image before resizing and card straightening. These are source observations, not execution results.
+
+The assistant explained a staged approach: inspect actual OCR output, extract the student number and full name, then separate name components only when a supported card layout or confirmed naming rule makes that possible. It noted that spaces alone do not establish which words form a first name, middle name or surname. It asked Ody to run his existing script and share the printed OCR text for the next teaching step. The existing function example and explanation were supported by the previously consulted official pytesseract documentation. No application code was changed or run, and no new source was opened. Only this activity entry was appended; no installation, test, commit or push was performed.
+
+### Entry 30: Propose matching card text against the class CSV
+
+On 23 November 2026, Ody proposed using names from a class CSV, alongside student numbers, to find relevant text in the card images. This is Ody's idea, not an implemented feature. The assistant read the latest report ending and opened the official Python CSV documentation at https://docs.python.org/3/library/csv.html#csv.DictReader. That source explains reading CSV rows by column names. No actual class CSV was inspected, and its columns and availability remain unverified.
+
+The assistant explained the proposed flow: read text from each card, compare it against the class list, use a unique student number as the primary matching field and the name as a supporting check, then obtain the stored name fields from the matched CSV row if those fields exist. This avoids guessing how to split an OCR name when the CSV already has separate fields. Unclear, conflicting or ambiguous matches would need review rather than automatically recording attendance. Name similarity alone was not proposed as proof of a match.
+
+Only this report entry was added. No application code or class data was changed, and no CSV matching, OCR experiment, installation, test, commit or push was performed.
+
+### Entry 31: Limit the next step to student numbers
+
+On 23 November 2026, Ody chose to focus on student numbers for now. Names are deferred for this next step. The assistant read the report ending and searched project file names for CSV files with `rg`, excluding the Python environment and Git metadata. That search returned no CSV paths; it was not a search of the whole computer.
+
+The proposed next milestone is reading a student number from a card and checking for an exact match in the class CSV. The assistant explained that student numbers should be treated as text to preserve any leading zeros and asked for the class CSV location and student number column heading. No file schema, number length or successful match was assumed. Only this activity entry was added; no application code was changed or run, and no new source was opened, installed or tested.
+
+### Entry 32: Create the two column Excel class list
+
+On 23 November 2026, Ody asked for a quick Excel file with student number and student name columns. The assistant used the spreadsheet creation guidance and bundled workbook tools to create `outputs/face-id-class-list-20261123/class_list.xlsx` with one worksheet named `Class list`. The two headings are `Student number` and `Student name`. The first data row uses only the details Ody previously supplied in this chat; those personal values are not repeated in the report. No other student records were invented.
+
+Student numbers are stored as text, and the number entry cells below the first row are also formatted as text to preserve leading zeros. The assistant applied a simple header style and readable widths, rendered and visually inspected the sheet, exported the workbook, then reopened the saved file and checked its headings, values and identifier text type. These checks passed. The workbook was not opened in native Excel, and it is not yet connected to the OCR code or exported as a class CSV.
+
+Only the workbook, generated support files and this activity entry were created or updated. The application code was unchanged. No card processing, attendance matching, package installation, new web source visit, commit or push was performed.
+
+### Entry 33: Explain printing labelled student rows
+
+On 23 November 2026, Ody supplied a pandas `iterrows()` loop with an inner loop that prints individual cell values, and asked to print each full row with student number and name labels. The assistant explained replacing the inner loop with one formatted print statement that accesses `row['Student number']` and `row['Student name']`, using the headings of the workbook created in Entry 32. It provided an illustrative output using the previously supplied record without copying that personal data into this report.
+
+The assistant read the report ending and opened https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.iterrows.html to verify how rows retain the DataFrame column labels. This was a teaching example only. No application code was edited or executed, and no current DataFrame contents or OCR matching result was inspected. Only this report entry was appended.
+
+### Entry 34: Explain checking Excel student numbers in OCR text
+
+On 23 November 2026, Ody supplied an OCR function that reads an Excel class list, prints its rows and prints the recognised image text. He asked to print an attendance message only when a listed student number appears anywhere in the OCR string. The assistant provided a replacement function as a teaching example, retaining his supplied workbook path and OCR output, reading student numbers as text, keeping blank cells as empty strings, trimming surrounding whitespace and guarding against matching a blank number. It explained that membership is checked against the `string` variable rather than against `print(string)`.
+
+The assistant read the report ending and opened https://pandas.pydata.org/docs/reference/api/pandas.read_excel.html to check the `dtype`, `engine` and `keep_default_na` options. The proposed check is literal substring membership, as requested, and depends on the OCR reading the number correctly. It was not represented as full attendance or identity verification. Only this report entry was added. No application code or class workbook was edited, inspected or executed during this exchange, and no successful match, installation, commit or push was claimed.

@@ -1,6 +1,9 @@
 import numpy as np
+from PIL import Image
 import pytesseract
+pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 import cv2
+import pandas as pd
 import glob
 import os
 
@@ -148,8 +151,26 @@ def detect_face(img, imgName):
     cv2.imwrite(f"output/{imgName}_onlyface_result.jpg", cropped_face)
 
 
-    def optical_character_recognition(image):
-        string = pytesseract.image_to_string(image)
+def optical_character_recognition(image):
+    string = pytesseract.image_to_string(image)
+
+    df = pd.read_excel(
+        r"input\students\class_list.xlsx",
+        engine="openpyxl",
+        dtype={"Student number": str},
+        keep_default_na=False
+    )
+
+    for index, row in df.iterrows():
+        student_number = row["Student number"].strip()
+
+        if student_number and student_number in string:
+            print(
+                f"Student NO: {student_number}, "
+                f"Name: {row['Student name']} is attending"
+            )
+
+    #print(string)
 
 
 
@@ -180,6 +201,7 @@ else:
               print(f"Unable to read image: {imgpath}")
               continue
 
+          image_text = image.copy()
           image = cv2.resize(image,
               (800, 800),
               interpolation=cv2.INTER_AREA,
@@ -187,6 +209,8 @@ else:
 
           # Apply gamma correction to enhance brightness
           image = adjust_gamma(image, gamma=1.5)
+
+          optical_character_recognition(image_text)
 
           try:
               # Attempt to apply homography transformation
@@ -202,6 +226,7 @@ else:
           except Exception as e:
               # Log the error if face detection fails
               print(f"Face detection error for image {imgname}: {e}")
+            
 
           # Log the completion of processing for the current image
           print(f"Processing of {imgname} has been completed.")
