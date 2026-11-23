@@ -1,7 +1,9 @@
 import numpy as np
+import pytesseract
 import cv2
 import glob
 import os
+
 
 def adjust_gamma(image, gamma=1.5):
     """
@@ -144,6 +146,12 @@ def detect_face(img, imgName):
 
     # Save the cropped face image
     cv2.imwrite(f"output/{imgName}_onlyface_result.jpg", cropped_face)
+
+
+    def optical_character_recognition(image):
+        string = pytesseract.image_to_string(image)
+
+
 
 
 
