@@ -1,7 +1,6 @@
 import numpy as np
 from PIL import Image
 import pytesseract
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 import cv2
 import pandas as pd
 import glob
@@ -152,6 +151,7 @@ def detect_face(img, imgName):
 
 
 def optical_character_recognition(image):
+    pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
     string = pytesseract.image_to_string(image)
 
     df = pd.read_excel(
@@ -168,6 +168,11 @@ def optical_character_recognition(image):
             print(
                 f"Student NO: {student_number}, "
                 f"Name: {row['Student name']} is attending"
+            )
+        elif student_number and student_number not in string:
+            print(
+                f"Student NO: {student_number}, "
+                f"Name: {row['Student name']} is not attending"
             )
 
     #print(string)
