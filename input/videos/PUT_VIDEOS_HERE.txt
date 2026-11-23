@@ -1,4 +1,0 @@
-Copy MP4, MOV, AVI, MKV or M4V videos into this folder.
-Actual support depends on the video codec. H.264 MP4 is a useful starting format.
-By default the demo samples about one frame per second, up to 30 frames per video.
-Results are still images and a processing summary, not an edited output video.
