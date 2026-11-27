@@ -579,3 +579,64 @@ On 24 November 2026, Ody asked to update his CV with his in progress Face ID fin
 The assistant added `Lecture Attendance Computer Vision System (Final Year Project)` (`In Progress`) at the top of `PROJECTS` with two bullets separating current prototype functionality (Python, OpenCV gamma adjustment, perspective warping, Haar cascade face cropping, Tesseract OCR and regex matching of 8 digit student numbers against an Excel class list with pandas) from planned work (lecture video recordings, multi card detection, improved OCR preprocessing, saved attendance exports and face comparison checks), and added `OpenCV` and `Tesseract` to `Frameworks and data`. An initial `ElementTree` rewrite dropped unused OOXML namespace declarations and failed Word validation; switching to direct OOXML splicing from the backup fixed the error. Margins, tab stops, paragraph spacing and the skills line were refined across two exports so all existing entries fit cleanly on one page without removing earlier projects.
 
 Microsoft Word COM exported `Ody_Nwagwu_CV_DevOps.pdf` at 1 page, which was copied to `D:\Downloads\Ody_Nwagwu_CV.pdf` and visually verified. No application code in `D:\Face_Id` was changed or run, and no commit or push was performed.
+
+## 27 November 2026
+
+### Entry 47: Pull request wording, Markdown guidance and merge to main
+
+On 27 November 2026, Ody shared a screenshot of the GitHub pull request page comparing `main` and `Gathering-character-` and asked what to write, followed by a brief question confirming that GitHub's description box accepts Markdown directly. The assistant inspected the branch commits and diff, supplied a draft title and Markdown description with current scope limits, and explained pasting directly into the GitHub description box and checking the Preview tab. Those two local report updates were written while `Gathering-character-` was checked out before the remote merge; when inspected later on 27 November, the workspace was cleanly on `main` at merge commit `6ef492a` (`Merge pull request #1 from odyess3/Gathering-character-`), so that earlier exchange is preserved here on `main`. No code or pull request action was performed by the assistant.
+
+### Entry 48: Research face recognition repositories and inspect ericbleo example
+
+**User request and supplied source**
+
+On 27 November 2026, Ody stated that the next feature step is researching face recognition repositories across GitHub, Reddit and Stack Overflow, and shared https://github.com/ericbleo/FACE-ATTENDANCE-SYSTEM/ as a good example to take inspiration from. Ody reported finding the repository useful as inspiration; he did not state specific code details or run results from it, so none are attributed to him.
+
+**Assistant research actions and direct checks**
+
+1. Used the `research-ops` skill, read the ending of `REPORT.md`, and checked `git status -sb` and `git log -n 4 --oneline` (confirming clean `main` at `6ef492a`).
+2. Directly fetched and read the repository metadata, file tree, `README.md` and full `main.py` (107 lines) of https://github.com/ericbleo/FACE-ATTENDANCE-SYSTEM/ via the GitHub API and raw content URLs.
+3. Searched GitHub, Reddit (`r/computervision`, `r/Python`) and Stack Overflow for Python face recognition attendance repositories, libraries and Windows installation issues, and directly read repository metadata and README sections for:
+   - https://github.com/opencv/opencv_zoo (`models/face_recognition_sface/README.md`)
+   - https://github.com/ageitgey/face_recognition
+   - https://github.com/serengil/deepface
+   - https://github.com/deepinsight/insightface
+   - https://github.com/kmhmubin/Face-Recognition-Attendance-System (`README.md`)
+   - https://github.com/Spidy20/Attendace_management_system
+4. Ran a read only check in `D:\Face_Id\.venv` confirming Python `3.15.2` and OpenCV `4.14.0` with both `cv2.FaceDetectorYN` (`True`) and `cv2.FaceRecognizerSF` (`True`) available, and queried PyPI JSON metadata for `dlib`, `face-recognition`, `deepface`, `insightface` and `onnxruntime` to check Windows Python 3.15 (`cp315`) wheel availability.
+
+**Findings reported to Ody**
+
+- From `ericbleo/FACE-ATTENDANCE-SYSTEM`: useful patterns include a clean `FaceAttendance` class structure, `cv2.VideoCapture` supporting both video files and webcams with frame downscaling, single entry per session CSV deduplication (`attendance.csv` with `name,time`), and visual bounding box plus reference thumbnail overlays. Limitations observed in its `main.py` and `README.md` include relying on `face_recognition` (`dlib`, which recommends Python 3.11 and Visual Studio C++ Build Tools on Windows), missing an `if not ret: break` guard at video end before resizing `frame`, and converting reference images to RGB while passing raw BGR video frames to `face_recognition.face_encodings`.
+- Compatibility evidence: PyPI currently provides no prebuilt Windows `cp315` wheel for `dlib` (`20.0.1`) or `onnxruntime` (`1.32.0`), whereas `cv2.FaceDetectorYN` (YuNet) and `cv2.FaceRecognizerSF` (SFace) are already built into the installed `opencv-contrib-python==4.14.0.94` in `.venv` and only require two `.onnx` model files from `opencv/opencv_zoo`. Older starred student repositories using `LBPHFaceRecognizer` were flagged as sensitive to lighting changes compared with embedding models.
+- Proposed two design options for Ody to choose between next: 1 to 1 verification comparing a live face in the frame against the face cropped from the presented ID card, or 1 to N matching against a saved folder of student reference faces similar to `ericbleo`.
+
+**Outcome**
+
+Only `REPORT.md` was updated. No application code was changed or run against images, no model files or packages were downloaded, and no commit or push was performed.
+
+### Entry 49: Outline two signal 30 minute video attendance design and build steps
+
+On 27 November 2026, Ody defined the target workflow for the next feature: processing a roughly 30 minute lecture video to identify student faces from a reference faces folder linked to their student card details (`Student number` and `Student name`), and confirming attendance from seeing the student's actual face alongside their student card in the video.
+
+The assistant checked `git status -sb` and listed `D:\Face_Id\input` (observing `input\students\class_list.xlsx` and `input\IMG_7857.jpg` without reading personal values), ran a web search on `cv2.FaceDetectorYN`, `cv2.FaceRecognizerSF` and `cv2.CAP_PROP_FPS`, and noted that two `docs.opencv.org` `HEAD` requests returned HTTP 403, so it kept the directly read `https://github.com/opencv/opencv_zoo` documentation as the primary reference.
+
+Following the guided learning approach without editing code, the assistant proposed a practical four step design tailored to a 30 minute video:
+1. Link reference photos to `input\students\class_list.xlsx` by naming each photo in `input\students\faces\` after the unique 8 digit `Student number` (for example `12345678.jpg`), avoiding duplicate name collisions.
+2. Sample 1 to 2 frames per second from the video using `cv2.VideoCapture` and `cv2.CAP_PROP_FPS` (turning about 54,000 frames at 30 FPS into 1,800 to 3,600 frames) and run fast `YuNet` face detection first so empty doorway frames skip `Tesseract OCR`.
+3. Track timestamps for both `SFace` face matches and 8 digit `Tesseract OCR` card matches within a short time window (such as a few seconds) so brief motion blur on one frame does not reject a valid entry, writing `Verified` (both matched), `Needs review` (only face or only card matched) or `Not detected` to `output\attendance.csv`.
+4. Build and test in four small steps starting with folder and `.onnx` model setup.
+
+Only `REPORT.md` was updated. No application code, folders or model files were created or changed, and no tests, commits or pushes were performed.
+
+### Entry 50: Explain `opencv/opencv_zoo`, ONNX models, YuNet and SFace
+
+On 27 November 2026, Ody asked for an explanation of `opencv/opencv_zoo`. Continuing with `explain-as-we-build`, the assistant directly read the root `README.md` and `models/face_detection_yunet/README.md` of https://github.com/opencv/opencv_zoo (alongside the earlier read of `models/face_recognition_sface/README.md`). The root `README.md` also links to OpenCV's official model host at https://huggingface.co/opencv; that link was observed in the `README.md` and not separately opened.
+
+The assistant explained `opencv/opencv_zoo` in plain English by comparing it with the bundled `haarcascade_frontalface_default.xml` already used in `face_detection.py`:
+- Why the repository exists: modern neural network files are tens of megabytes each, so the OpenCV team hosts pretrained `.onnx` model files and demo scripts separately in `opencv/opencv_zoo` (and on Hugging Face) rather than making `opencv-python` a multi gigabyte install.
+- What `.onnx` means: a portable file format storing a trained neural network's weights so OpenCV runs it directly on CPU without installing PyTorch, TensorFlow or `dlib`.
+- How the two face models work together: `YuNet` (`cv2.FaceDetectorYN`, noting both `face_detection_yunet_2023mar.onnx` and `face_detection_yunet_2026may.onnx` in its `README.md`) locates faces and 5 facial landmarks (eyes, nose and mouth corners), while `SFace` (`cv2.FaceRecognizerSF`) uses `alignCrop` to straighten each face to 112 by 112 pixels, `feature` to compute a 128 number embedding vector, and `match` with cosine similarity (`0.363` threshold) to check whether two faces belong to the same person.
+- Download note: warned that `opencv/opencv_zoo` uses Git LFS, so downloading only the two `.onnx` files (from Hugging Face or GitHub raw download while checking file size) avoids cloning the entire multi gigabyte repository or saving a tiny LFS text pointer file by mistake.
+
+Only `REPORT.md` was updated. No application code, folders or model files were changed, and no commits or pushes were performed.
