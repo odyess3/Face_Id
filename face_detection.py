@@ -1,7 +1,12 @@
 import numpy as np
+from PIL import Image
+import pytesseract
 import cv2
+import pandas as pd
+import re
 import glob
 import os
+
 
 def adjust_gamma(image, gamma=1.5):
     """
@@ -146,6 +151,40 @@ def detect_face(img, imgName):
     cv2.imwrite(f"output/{imgName}_onlyface_result.jpg", cropped_face)
 
 
+def optical_character_recognition(image):
+    pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+    string = pytesseract.image_to_string(image)
+    all_numbers = re.findall(r'\d+', string)
+    numbers = [n for n in all_numbers if len(n) == 8]
+    return numbers
+
+
+
+def check_class_list(detected_numbers):
+    df = pd.read_excel(
+        r"input\students\class_list.xlsx",
+        engine="openpyxl",
+        dtype={"Student number": str},
+        keep_default_na=False
+    )
+    for index, row in df.iterrows():
+        student_number = row["Student number"].strip()
+        if not student_number:
+            continue
+        if student_number in detected_numbers:
+            print(
+                f"Student NO: {student_number}, "
+                f"Name: {row['Student name']} was detected"
+            )
+        else:
+            print(
+                f"Student NO: {student_number}, "
+                f"Name: {row['Student name']} was not detected"
+            )
+
+
+
+
 
 # Pls specify here the folder of your pictures:
 image_folder = "input"
@@ -160,8 +199,12 @@ else:
     if not image_files:
         print(f"Error: No .jpg images found in the folder '{image_folder}'. Please ensure the folder contains .jpg files.")
     else:
+
+      detected_numbers = set() # Initialize a set to store detected student numbers
+      
       # Process all images (in jpg format) in the specified folder
-      for imgpath in glob.glob(f"{image_folder}/*.jpg"):
+      for imgpath in image_files:
+          
           print(f"Processing of {imgpath} has started.")  # Log the start of processing
           imgname = os.path.splitext(os.path.basename(imgpath))[0]  # Extract the image name without extension
 
@@ -171,6 +214,11 @@ else:
           if image is None:
               print(f"Unable to read image: {imgpath}")
               continue
+
+          image_text = image.copy()
+
+          numbers = optical_character_recognition(image_text)
+          detected_numbers.update(numbers)
 
           image = cv2.resize(image,
               (800, 800),
@@ -195,5 +243,8 @@ else:
               # Log the error if face detection fails
               print(f"Face detection error for image {imgname}: {e}")
 
+
+          
           # Log the completion of processing for the current image
           print(f"Processing of {imgname} has been completed.")
+      check_class_list(detected_numbers)
